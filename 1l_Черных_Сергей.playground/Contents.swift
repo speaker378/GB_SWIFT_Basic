@@ -6,17 +6,17 @@ let a: Float = 5 // старший коэффициент
 let b: Float = 15 // средний коэффициент
 let c: Float = 10 // свободный член
 
-let D = b*b-4*a*c // дискриминант
+let d = b * b - 4 * a * c // дискриминант
 var x1, x2: Float // корни уравнения
 
-if D > 0{
-    x1 = (-b+sqrt(D))/(2*a)
-    x2 = (-b-sqrt(D))/(2*a)
+if d > 0 {
+    x1 = (-b+sqrt(d))/(2*a)
+    x2 = (-b-sqrt(d))/(2*a)
     print("Корней два: x1 = \(x1), x2 = \(x2)")
-} else if D == 0{
+} else if d == 0{
     x1 = -b/(2*a)
     print("Один корень: x = \(x1)")
-} else if D < 0{
+} else if d < 0{
     print("Корней на множестве действительных чисел нет")
 }
 
@@ -32,16 +32,17 @@ print("Площадь = \(area)(ед²), периметр = \(perimeter), гип
 
 //3. Пользователь вводит сумму вклада в банк и годовой процент. Найти сумму вклада через 5 лет.
 
-let startDeposit: UInt = 1_000_000 // сумма вклада
+let startDeposit: Float = 1_000_000.25 // сумма вклада
 let interestRate: Float = 5 // фиксированая ставка % годовых
 let placementPeriodInMonths: UInt = 60 // период вклада в месяцах
 let interestCapitalization = false // Капитализация процентов на счете по вкладу
 let frequencyOfPayments: UInt = 1 // периодичность выплат в месяцах учитывается если есть капитализация процентов
 
-var finalDeposit = Float(startDeposit)
+var finalDeposit = startDeposit
 
 if interestCapitalization{
     var pays = Float(placementPeriodInMonths) / Float(frequencyOfPayments) // всего выплат за срок
+    
     while pays != 0 {
         let replenishment = finalDeposit * interestRate / 12 * Float(frequencyOfPayments) / 100
         //print("Начислено процентов \(replenishment)")
@@ -49,7 +50,7 @@ if interestCapitalization{
         pays -= 1
     }
 } else {
-    let accruedInterest = Float(startDeposit) * interestRate * Float(placementPeriodInMonths) / 12 / 100
+    let accruedInterest = startDeposit * interestRate * Float(placementPeriodInMonths) / 12 / 100
     finalDeposit = accruedInterest + Float(startDeposit)
 }
 
