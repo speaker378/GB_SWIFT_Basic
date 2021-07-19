@@ -2,7 +2,7 @@ import Foundation
 
 // 1. Написать функцию, которая определяет, четное число или нет.
 
-func even(_ num:Int) -> Bool {
+func even(_ num: Int) -> Bool {
     if num % 2 == 0 {
         return true
     } else {
@@ -56,7 +56,7 @@ print("\n")
 
 // 3. Создать возрастающий массив из 100 чисел.
 
-var newArray = Array(1...100)
+var newArray = [Int](1...100)
 
 
 // 4. Удалить из этого массива все четные числа и все числа, которые не делятся на 3.
