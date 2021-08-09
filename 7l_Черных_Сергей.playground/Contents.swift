@@ -3,6 +3,20 @@
 
 import Foundation
 
+enum CoffeeType {
+    case espresso
+    case cappuccino
+}
+
+enum CoffeeMachineError: Error {
+    case notEnoughCoffe
+    case notEnoughMilk
+    case notEnoughWater
+    case overflowCoffee
+    case overflowMilk
+    case overflowWater
+}
+
 class TextFile {
     let namePattern = #"^[\w,\s-]+\.[A-Za-z]{3}$"#
     private (set) var name: String
@@ -32,21 +46,6 @@ if let newName = myTextFile?.rename("List.doc") {
 }
 if let newName = myTextFile?.rename("+List/.doc") {
     print("Имя файла успешно изменено на " + newName)
-}
-
-
-enum CoffeeType {
-    case espresso
-    case cappuccino
-}
-
-enum CoffeeMachineError: Error {
-    case notEnoughCoffe
-    case notEnoughMilk
-    case notEnoughWater
-    case overflowCoffee
-    case overflowMilk
-    case overflowWater
 }
 
 struct CoffeeIngredients {
@@ -91,7 +90,7 @@ class CoffeeMachine {
         coffee += value
     }
     func fillMilk(_ value: UInt) throws {
-        guard milk + value <= 280 else { throw CoffeeMachineError.overflowCoffee }
+        guard milk + value <= 280 else { throw CoffeeMachineError.overflowMilk }
         milk += value
     }
     func fillWater(_ value: UInt) throws {
